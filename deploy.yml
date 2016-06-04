@@ -1,0 +1,11 @@
+---
+- name: Debian
+  hosts: all
+  tasks:
+    - name: install docker requirements
+      apt: name={{ item }} state=latest
+      with_items:
+        - apt-transport-https
+        - ca-certificates
+    - name: docker repo
+      apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-trusty main'
